@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(
+        135deg,
+        #120817,
+        #35112e,
+        #170b24,
+        #4a1239
+    );
+    background-size: 300% 300%;
+    animation: backgroundGlow 12s ease infinite;
+    color: #fff0fa;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+@keyframes backgroundGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 80% 20%, #ffbde8, transparent),
+        radial-gradient(2px 2px at 50% 70%, white, transparent),
+        radial-gradient(2px 2px at 90% 80%, #ffc7ec, transparent),
+        radial-gradient(2px 2px at 15% 85%, white, transparent);
+    background-size: 180px 180px;
+    animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+.birthday-container {
+    position: relative;
+    z-index: 1;
+    width: min(90%, 520px);
+    margin: 0 auto;
+    padding: 75px 0 35px;
+    text-align: center;
+}
+
+.heart {
+    font-size: 75px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px #ff55b9);
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+.subtitle {
+    color: #ffb6e4;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(42px, 10vw, 62px);
+    line-height: 1.2;
+    color: #ffb4e2;
+    text-shadow: 0 0 20px #ff3ca6;
+    margin-bottom: 22px;
+}
+
+.description {
+    color: #f5d8ec;
+    font-size: 14px;
+    line-height: 1.9;
+    margin-bottom: 30px;
+}
+
+button {
+    border: 1px solid #ffb6e4;
+    border-radius: 50px;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #ff69b4, #c02683);
+    color: white;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 20px #ff4fa866;
+    transition: 0.3s ease;
+    margin: 10px 0;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px #ff69b4;
+}
+
+.hidden {
+    display: none;
+}
+
+#surprise,
+#letter {
+    margin-top: 35px;
+    animation: fadeIn 1s ease;
+}
+
+#surprise h2,
+.letter-card h2 {
+    font-family: 'Dancing Script', cursive;
+    color: #ffb4e2;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+#surprise p,
+.letter-card p {
+    font-size: 14px;
+    line-height: 2;
+    color: #ffe5f5;
+}
+
+.letter-card {
+    padding: 25px 22px;
+    border: 1px solid #ff9bd766;
+    border-radius: 22px;
+    background: #ffffff0b;
+    box-shadow: 0 0 30px #ff4fa81a;
+    backdrop-filter: blur(8px);
+}
+
+.footer {
+    color: #dca3ca;
+    font-size: 11px;
+    margin-top: 55px;
+    letter-spacing: 2px;
+}
+
+.floating-heart {
+    position: fixed;
+    z-index: 5;
+    bottom: -30px;
+    pointer-events: none;
+    animation: floatUp 4s linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(30deg);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 400px) {
+    .birthday-container {
+        padding-top: 55px;
+    }
+
+    .subtitle {
+        letter-spacing: 2px;
+    }
+
+    .letter-card {
+        padding: 22px 17px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+  }
