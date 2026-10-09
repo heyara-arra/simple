@@ -3,81 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, My Love! 💗</title>
+
+    <title>A Little Scrapbook for You 💗</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="stars"></div>
+    <div class="decor decor-one">♡</div>
+    <div class="decor decor-two">✿</div>
+    <div class="decor decor-three">✧</div>
 
-    <main class="birthday-container">
+    <main class="scrapbook">
 
-        <div class="heart">💗</div>
+        <!-- BIRTHDAY COVER -->
 
-        <p class="subtitle">A LITTLE SURPRISE FOR YOU</p>
+        <section class="cover paper">
 
-        <h1>Happy Birthday,<br>My Love! 🎂</h1>
+            <span class="tape">made with love</span>
 
-        <p class="description">
-            Today is all about you, my favorite person. 💕
-            I made something special just for you.
-        </p>
+            <p class="small-title">A LITTLE SCRAPBOOK FOR</p>
 
-        <button id="openButton">
-            Open Your Surprise 💌
-        </button>
+            <h1>Happy Birthday,<br>
+                <span>My Love!</span>
+            </h1>
 
-        <section id="surprise" class="hidden">
+            <div class="cover-art">
+                <span>🎀</span>
+                <span>💌</span>
+                <span>🌷</span>
+            </div>
 
-            <h2>To My Favorite Person 💗</h2>
-
-            <p>
-                Happy birthday, baby! 🥹💕
-                I hope your special day brings you so much
-                happiness, love, and beautiful memories.
-                Thank you for being part of my life.
-                No matter how simple this little surprise is,
-                I made it with love, especially for you.
-                I love you always! 💖
+            <p class="handwriting">
+                A little book filled with my love for you ♡
             </p>
 
-            <button id="letterButton">
-                Read My Secret Letter 💌
+            <button id="openButton" class="pink-button">
+                Open your gift ♡
             </button>
+
+            <p class="tiny-note">psst... this is just for you!</p>
 
         </section>
 
-        <section id="letter" class="hidden">
 
-            <div class="letter-card">
-                <h2>My Letter to You 💌</h2>
+        <!-- BIRTHDAY MESSAGE -->
 
-                <p>
-                    My love,
-                    <br><br>
-                    If I could give you one thing today,
-                    it would be the ability to see yourself
-                    through my eyes. Maybe then you'd understand
-                    how special you are to me.
-                    <br><br>
-                    I hope we continue making beautiful memories
-                    together. I'll always be cheering for you,
-                    supporting your dreams, and loving you
-                    in the little ways I can.
-                    <br><br>
-                    Happy birthday, baby.
-                    You will always have a special place
-                    in my heart. 💗
-                    <br><br>
-                    Forever yours, 💋
-                </p>
+        <section id="birthday" class="paper section hidden">
+
+            <p class="section-label">✿ page 01 · a special day ✿</p>
+
+            <h2>It's your day, baby!</h2>
+
+            <p>
+                Happy birthday to my favorite person! ♡
+                I made this little scrapbook just for you,
+                filled with sweet words, little memories,
+                and all the love I have for you.
+            </p>
+
+            <p>
+                I hope this little surprise makes you smile
+                because you deserve all the happiness
+                in the world.
+            </p>
+
+            <div class="sticker">💗</div>
+
+            <p class="handwriting">
+                Today, tomorrow, and always. ♡
+            </p>
+
+        </section>
+
+
+        <!-- OUR MEMORIES -->
+
+        <section id="memories" class="paper section hidden">
+
+            <p class="section-label">✿ page 02 · our memories ✿</p>
+
+            <h2>Little moments,<br>big feelings.</h2>
+
+            <p class="section-description">
+                Some of my favorite moments have you in them.
+            </p>
+
+            <div class="photo-grid">
+
+                <div class="polaroid rotate-left">
+                    <div class="photo-placeholder">
+                        <span>📷</span>
+                        <small>our first photo</small>
+                    </div>
+                    <p>One of my favorites ♡</p>
+                </div>
+
+                <div class="polaroid rotate-right">
+                    <div class="photo-placeholder">
+                        <span>🌷</span>
+                        <small>a happy memory</small>
+                    </div>
+                    <p>My happy place.</p>
+                </div>
+
+                <div class="polaroid rotate-right">
+                    <div class="photo-placeholder">
+                        <span>💗</span>
+                        <small>just us</small>
+                    </div>
+                    <p>Us being us ♡</p>
+                </div>
+
+                <div class="polaroid rotate-left">
+                    <div class="photo-placeholder">
+                        <span>✨</span>
+                        <small>another memory</small>
+                    </div>
+                    <p>A moment to keep.</p>
+                </div>
+
+            </div>
+
+            <p class="tiny-note">
+                Our pictures will go here. ♡
+            </p>
+
+        </section>
+
+
+        <!-- REASONS I LOVE YOU -->
+
+        <section id="reasons" class="paper section hidden">
+
+            <p class="section-label">✿ page 03 · little reasons ✿</p>
+
+            <h2>Things I love<br>about you.</h2>
+
+            <p class="section-description">
+                Tap each little note to open it! ♡
+            </p>
+
+            <div class="reason-list">
+
+                <button class="reason-card">
+                    🎀 Your smile
+                    <span class="reason-message hidden">
+                        Your smile makes my day better
+                        in ways you don't even know. ♡
+                    </span>
+                </button>
+
+                <button class="reason-card">
+                    🌷 Your heart
+                    <span class="reason-message hidden">
+                        I love the person you are and
+                        the kindness you carry.
+                    </span>
+                </button>
+
+                <button class="reason-card">
+                    🧸 The way you love me
+                    <span class="reason-message hidden">
+                        Thank you for making me feel
+                        loved and appreciated.
+                    </span>
+                </button>
+
+                <button class="reason-card">
+                    💌 Simply being you
+                    <span class="reason-message hidden">
+                        I don't need you to be perfect.
+                        I'm happy that you're you. ♡
+                    </span>
+                </button>
+
             </div>
 
         </section>
 
-        <p class="footer">Made with all my love 💖</p>
+
+        <!-- SECRET LETTER -->
+
+        <section id="letter" class="paper section hidden">
+
+            <p class="section-label">✿ page 04 · a little letter ✿</p>
+
+            <h2>To my favorite boy,</h2>
+
+            <div class="letter-paper">
+
+                <p>
+                    Happy birthday, my love! ♡
+                </p>
+
+                <p>
+                    I wish I could put into words just how
+                    much you mean to me. You have become
+                    such a special part of my life, and I'm
+                    grateful for all the little moments we share.
+                </p>
+
+                <p>
+                    As you grow older, I hope you continue
+                    chasing your dreams and believing in yourself.
+                    I'll always be proud of you and happy to
+                    see you become the person you want to be.
+                </p>
+
+                <p>
+                    Thank you for being someone I can love,
+                    laugh with, and make memories with.
+                    I hope we get to fill many more pages
+                    with our story.
+                </p>
+
+                <p>
+                    Happy birthday again, baby.
+                    I love you so much! 💗
+                </p>
+
+                <p class="handwriting signature">
+                    Forever yours ♡
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FINAL SURPRISE -->
+
+        <section id="final" class="paper section hidden">
+
+            <div class="final-sticker">🎂</div>
+
+            <p class="section-label">✿ the last page ✿</p>
+
+            <h2>One last thing...</h2>
+
+            <p>
+                Out of all the gifts I could give you,
+                I hope you always remember that you
+                have someone who wishes for your happiness,
+                celebrates your wins, and loves you
+                through the little things.
+            </p>
+
+            <h2 class="final-title">
+                Happy Birthday, Baby! 💗
+            </h2>
+
+            <p class="handwriting">
+                You're one of my favorite chapters. ♡
+            </p>
+
+            <button id="restartButton" class="pink-button">
+                Read it again ↻
+            </button>
+
+        </section>
+
+
+        <!-- NAVIGATION -->
+
+        <nav id="navigation" class="navigation hidden">
+            <button id="prevButton" aria-label="Previous page">
+                ←
+            </button>
+
+            <span id="pageIndicator">Page 1 of 5</span>
+
+            <button id="nextButton" aria-label="Next page">
+                →
+            </button>
+        </nav>
+
+        <footer>
+            <p>cut, paste & love ♡</p>
+        </footer>
 
     </main>
 
