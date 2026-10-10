@@ -1,4 +1,4 @@
-/* ===== FONTS & RESET ===== */
+g/* ===== FONTS & RESET ===== */
 
 * {
     margin: 0;
@@ -122,6 +122,28 @@ body {
             transparent 32px,
             #fffdf8 32px
         );
+    /* FIX: Make buttons clickable */
+button {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.cover {
+    position: relative;
+    z-index: 1;
+}
+
+.cover button {
+    position: relative;
+    z-index: 100;
+    pointer-events: auto;
+}
+
+.floating-heart {
+    pointer-events: none;
+}
 }
 
 .tape {
