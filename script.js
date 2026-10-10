@@ -1,146 +1,122 @@
-// ===== GET ELEMENTS =====
+// GET HTML ELEMENTS
+const celebration = document.getElementById("celebration");
+const subtitle = document.getElementById("subtitle");
+const message = document.getElementById("message");
+const candles = document.getElementById("candles");
 
-const openButton = document.getElementById("openButton");
-const restartButton = document.getElementById("restartButton");
-
-const navigation = document.getElementById("navigation");
-const prevButton = document.getElementById("prevButton");
-const nextButton = document.getElementById("nextButton");
-const pageIndicator = document.getElementById("pageIndicator");
-
-const pages = [
-    document.querySelector(".cover"),
-    document.getElementById("birthday"),
-    document.getElementById("memories"),
-    document.getElementById("reasons"),
-    document.getElementById("letter"),
-    document.getElementById("final")
-];
-
-let currentPage = 0;
+const blowButton = document.getElementById("blowButton");
+const wishButton = document.getElementById("wishButton");
 
 
-// ===== SHOW PAGE =====
-
-function showPage(index) {
-    if (index < 0 || index >= pages.length) {
-        return;
-    }
-
-    currentPage = index;
-
-    pages.forEach((page, i) => {
-        page.classList.toggle("hidden", i !== currentPage);
-    });
-
-    // Show navigation after opening the cover
-    navigation.classList.toggle("hidden", currentPage === 0);
-
-    // Update page number
-    if (currentPage === 0) {
-        pageIndicator.textContent = "Cover ♡";
-    } else {
-        pageIndicator.textContent =
-            `Page ${currentPage} of ${pages.length - 1}`;
-    }
-
-    // Update navigation buttons
-    prevButton.disabled = currentPage === 1;
-    nextButton.disabled = currentPage === pages.length - 1;
-
-    // Scroll to top of the scrapbook
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-    // Little hearts on every page
-    if (currentPage > 0) {
-        createHearts(5);
-    }
-}
-
-
-// ===== OPEN THE SCRAPBOOK =====
-
-openButton.addEventListener("click", function () {
-    showPage(1);
-    createHearts(18);
-});
-
-
-// ===== NEXT PAGE =====
-
-nextButton.addEventListener("click", function () {
-    if (currentPage < pages.length - 1) {
-        showPage(currentPage + 1);
-    }
-});
-
-
-// ===== PREVIOUS PAGE =====
-
-prevButton.addEventListener("click", function () {
-    if (currentPage > 1) {
-        showPage(currentPage - 1);
-    }
-});
-
-
-// ===== RESTART SCRAPBOOK =====
-
-restartButton.addEventListener("click", function () {
-    showPage(0);
-
-    createHearts(15);
-
-    openButton.textContent = "Open your gift ♡";
-});
-
-
-// ===== CLICKABLE LOVE NOTES =====
-
-const reasonCards = document.querySelectorAll(".reason-card");
-
-reasonCards.forEach(card => {
-    card.addEventListener("click", function () {
-        const message = card.querySelector(".reason-message");
-
-        message.classList.toggle("hidden");
-    });
-});
-
-
-// ===== FLOATING HEART ANIMATION =====
-
-function createHearts(amount) {
-    const symbols = ["💗", "💕", "♡", "💖", "🌸", "✨"];
+// CONFETTI ANIMATION
+function launchConfetti(amount) {
+    const colors = [
+        "#f5a8c5",
+        "#ffd6e7",
+        "#ffe6a7",
+        "#d9c2ff",
+        "#ffc6a5"
+    ];
 
     for (let i = 0; i < amount; i++) {
-        const heart = document.createElement("span");
+        const confetti = document.createElement("div");
 
-        heart.className = "floating-heart";
+        confetti.classList.add("confetti");
 
-        heart.textContent =
-            symbols[Math.floor(Math.random() * symbols.length)];
+        confetti.style.left = Math.random() * 100 + "vw";
 
-        heart.style.left = Math.random() * 95 + "vw";
+        confetti.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
 
-        heart.style.fontSize =
-            (16 + Math.random() * 16) + "px";
+        confetti.style.animationDuration =
+            (2 + Math.random() * 3) + "s";
 
-        heart.style.animationDelay =
-            (Math.random() * 1.5) + "s";
+        confetti.style.animationDelay =
+            Math.random() * 0.8 + "s";
 
-        document.body.appendChild(heart);
+        celebration.appendChild(confetti);
 
-        heart.addEventListener("animationend", function () {
-            heart.remove();
-        });
+        setTimeout(() => {
+            confetti.remove();
+        }, 6000);
     }
 }
 
 
-// ===== INITIAL STATE =====
+// BALLOON ANIMATION
+function launchBalloons(amount) {
+    const colors = [
+        "#f5a8c5",
+        "#ffd6e7",
+        "#ffe6a7",
+        "#d9c2ff",
+        "#ffc6a5"
+    ];
 
-showPage(0);
+    for (let i = 0; i < amount; i++) {
+        const balloon = document.createElement("div");
+
+        balloon.classList.add("balloon");
+
+        balloon.style.left = Math.random() * 95 + "vw";
+
+        balloon.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
+
+        balloon.style.animationDuration =
+            (5 + Math.random() * 4) + "s";
+
+        balloon.style.animationDelay =
+            Math.random() * 2 + "s";
+
+        celebration.appendChild(balloon);
+
+        setTimeout(() => {
+            balloon.remove();
+        }, 11000);
+    }
+}
+
+
+// STARTING SURPRISE
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        launchConfetti(25);
+        launchBalloons(8);
+    }, 500);
+});
+
+
+// BLOW THE CANDLES
+blowButton.addEventListener("click", () => {
+    const flames = document.querySelectorAll(".flame");
+
+    flames.forEach((flame) => {
+        flame.style.display = "none";
+    });
+
+    subtitle.textContent = "Yay! It's your special day! 💗";
+
+    message.textContent =
+        "You did it! Now close your eyes and make your most special wish. ✨";
+
+    blowButton.classList.add("hidden");
+    wishButton.classList.remove("hidden");
+
+    launchConfetti(45);
+});
+
+
+// MAKE A WISH
+wishButton.addEventListener("click", () => {
+    subtitle.textContent = "Your wish is on its way! 💖";
+
+    message.textContent =
+        "May your wishes come true, your heart stay happy, and your year be full of love! Happy Birthday! 🎂💗";
+
+    wishButton.textContent = "Wish sent! 💌";
+    wishButton.disabled = true;
+
+    launchConfetti(100);
+    launchBalloons(18);
+});
