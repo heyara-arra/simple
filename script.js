@@ -50,24 +50,29 @@ function createShimmers(amount = 15) {
 createShimmers(30);
 setInterval(() => createShimmers(8), 2500);
 
-// 🎂 Create 23 candles
+
+ // 🎂 Two number-shaped candles: 2 and 3
 const candleArea = $("candleArea");
 
 if (candleArea) {
     candleArea.innerHTML = "";
 
-    for (let i = 0; i < 23; i++) {
+    ["2", "3"].forEach((digit) => {
         const candle = document.createElement("div");
-        candle.className = "candle";
+        candle.className = "number-candle";
 
         const flame = document.createElement("span");
         flame.className = "flame";
         flame.textContent = "🔥";
-        flame.setAttribute("aria-hidden", "true");
+
+        const number = document.createElement("span");
+        number.className = "candle-digit";
+        number.textContent = digit;
 
         candle.appendChild(flame);
+        candle.appendChild(number);
         candleArea.appendChild(candle);
-    }
+    });
 }
 
 // 🎵 Birthday melody
