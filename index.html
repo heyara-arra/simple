@@ -1,3 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#650018">
+    <title>Happy Birthday, Lovelove ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+    <div id="shimmers" aria-hidden="true"></div>
+
+    <main class="site">
+
+        <!-- WELCOME -->
+        <section class="glass panel welcome" id="welcome">
+            <p class="eyebrow">A LITTLE SURPRISE FOR YOU</p>
+            <div class="heart-icon">♥</div>
+            <h1>Happy Birthday,<br>
+                <span>Lovelove Ko</span>
+            </h1>
+            <p class="intro">
+                Today is all about you. I made something special
+                for the person who means so much to me.
+            </p>
+            <button id="startButton" class="primary-button">
+                Open Your Surprise <span>♡</span>
+            </button>
+            <p class="tiny-note">made with all my love, just for you</p>
+        </section>
+
+        <!-- CAKE -->
+        <section class="glass panel hidden" id="cakeSection">
+            <p class="eyebrow">YOUR SPECIAL DAY</p>
+            <h2>Make a little wish</h2>
+            <p class="description">
+                Another year of you. Another reason to celebrate you. ❤️
+            </p>
+
+            <div class="cake-scene">
+                <div class="cake-glow"></div>
+
+                <div class="candle-area" id="candleArea"
+                     aria-label="23 birthday candles"></div>
+
+                <div class="icing"></div>
+                <div class="cake-body">
+                    <span class="cake-decoration">♥ &nbsp; ♥ &nbsp; ♥</span>
+                    <span class="cake-number">23</span>
+                </div>
+                <div class="cake-base"></div>
+                <div class="cake-plate"></div>
+            </div>
+
+            <p id="cakeMessage" class="description">
+                Close your eyes and get ready.
+            </p>
+
+            <button id="blowButton" class="primary-button">
+                Blow the Candles ✨
+            </button>
+
+            <button id="wishButton" class="primary-button hidden">
+                Make a Wish ♥
+            </button>
+
+            <p id="musicStatus" class="tiny-note">
+                ♫ Piano melody starts with your surprise
+            </p>
+        </section>
+
+        <!-- WISH -->
+        <section class="glass panel hidden" id="wishSection">
+            <p class="eyebrow">A WISH JUST FOR YOU</p>
+            <h2>What is your wish?</h2>
+            <p class="description">
+                Write down your birthday wish. Make it as big
+                and beautiful as your dreams. ✨
+            </p>
+
+            <form id="wishForm">
+                <label for="wishText">Your birthday wish</label>
+                <textarea id="wishText" name="wish"
+                    placeholder="My wish is..." rows="5"
+                    maxlength="1500" required></textarea>
+
+                <button id="sendWishButton" class="primary-button"
+                    type="submit">
+                    Send My Wish 💌
+                </button>
+                <p id="wishStatus" class="form-status" aria-live="polite"></p>
+            </form>
+
+            <p class="tiny-note">
+                Your wish will be sent privately to my email.
+            </p>
+        </section>
+        
 <!-- FINAL SCREEN: OUR FIRST PHOTO + YOUR MESSAGE -->
 <section class="glass panel hidden" id="photosSection">
     <p class="eyebrow">A MEMORY I WILL ALWAYS KEEP</p>
@@ -56,4 +158,9 @@
         we haven't made yet. ♥
     </p>
 </section>
-
+        
+        
+        <footer> Especially made para sayo Edoy· ♥</footer>
+    </main>
+</body>
+</html>
