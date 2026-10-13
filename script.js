@@ -207,10 +207,10 @@ if (wishForm) {
             return;
         }
 
-        if (RECEIVER_EMAIL === "YOUR_EMAIL") {
-            status.textContent =
+        if (RECEIVER_EMAIL === "arraarcilla00@gmail.com") {
+            /*status.textContent =
                 "Email setup is not finished yet. Please set your email in script.js.";
-            return;
+            return;*/
         }
 
         status.textContent = "Sending your wish... ❤️";
