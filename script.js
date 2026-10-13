@@ -1,122 +1,256 @@
-// GET HTML ELEMENTS
-const celebration = document.getElementById("celebration");
-const subtitle = document.getElementById("subtitle");
-const message = document.getElementById("message");
-const candles = document.getElementById("candles");
 
-const blowButton = document.getElementById("blowButton");
-const wishButton = document.getElementById("wishButton");
+const $ = (id) => document.getElementById(id);
 
+// Screen navigation
+const sections = [
+    "welcome",
+    "cakeSection",
+    "wishSection",
+    "photosSection"
+];
 
-// CONFETTI ANIMATION
-function launchConfetti(amount) {
-    const colors = [
-        "#f5a8c5",
-        "#ffd6e7",
-        "#ffe6a7",
-        "#d9c2ff",
-        "#ffc6a5"
-    ];
+function showSection(id) {
+    sections.forEach((sectionId) => {
+        const section = $(sectionId);
+
+        if (section) {
+            section.classList.toggle("hidden", sectionId !== id);
+        }
+    });
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+// ✨ Floating hearts and sparkles
+function createShimmers(amount = 15) {
+    const container = $("shimmers");
+    if (!container) return;
 
     for (let i = 0; i < amount; i++) {
-        const confetti = document.createElement("div");
+        const sparkle = document.createElement("span");
 
-        confetti.classList.add("confetti");
+        sparkle.className = "shimmer";
+        sparkle.textContent = Math.random() > 0.5 ? "✦" : "♥";
+        sparkle.style.left = Math.random() * 100 + "%";
+        sparkle.style.top = Math.random() * 100 + "%";
+        sparkle.style.fontSize = 10 + Math.random() * 14 + "px";
+        sparkle.style.animationDuration = 2 + Math.random() * 4 + "s";
 
-        confetti.style.left = Math.random() * 100 + "vw";
-
-        confetti.style.backgroundColor =
-            colors[Math.floor(Math.random() * colors.length)];
-
-        confetti.style.animationDuration =
-            (2 + Math.random() * 3) + "s";
-
-        confetti.style.animationDelay =
-            Math.random() * 0.8 + "s";
-
-        celebration.appendChild(confetti);
+        container.appendChild(sparkle);
 
         setTimeout(() => {
-            confetti.remove();
+            sparkle.remove();
         }, 6000);
     }
 }
 
+createShimmers(30);
+setInterval(() => createShimmers(8), 2500);
 
-// BALLOON ANIMATION
-function launchBalloons(amount) {
-    const colors = [
-        "#f5a8c5",
-        "#ffd6e7",
-        "#ffe6a7",
-        "#d9c2ff",
-        "#ffc6a5"
-    ];
+// 🎂 Create 23 candles
+const candleArea = $("candleArea");
 
-    for (let i = 0; i < amount; i++) {
-        const balloon = document.createElement("div");
+if (candleArea) {
+    candleArea.innerHTML = "";
 
-        balloon.classList.add("balloon");
+    for (let i = 0; i < 23; i++) {
+        const candle = document.createElement("div");
+        candle.className = "candle";
 
-        balloon.style.left = Math.random() * 95 + "vw";
+        const flame = document.createElement("span");
+        flame.className = "flame";
+        flame.textContent = "🔥";
+        flame.setAttribute("aria-hidden", "true");
 
-        balloon.style.backgroundColor =
-            colors[Math.floor(Math.random() * colors.length)];
-
-        balloon.style.animationDuration =
-            (5 + Math.random() * 4) + "s";
-
-        balloon.style.animationDelay =
-            Math.random() * 2 + "s";
-
-        celebration.appendChild(balloon);
-
-        setTimeout(() => {
-            balloon.remove();
-        }, 11000);
+        candle.appendChild(flame);
+        candleArea.appendChild(candle);
     }
 }
 
+// 🎵 Birthday melody
+let audioContext;
 
-// STARTING SURPRISE
-window.addEventListener("load", () => {
-    setTimeout(() => {
-        launchConfetti(25);
-        launchBalloons(8);
-    }, 500);
-});
+const melody = [
+    [392, 0.3], [392, 0.3], [440, 0.6],
+    [392, 0.6], [523, 0.6], [494, 1],
+    [392, 0.3], [392, 0.3], [440, 0.6],
+    [392, 0.6], [587, 0.6], [523, 1],
+    [392, 0.3], [392, 0.3], [784, 0.6],
+    [659, 0.6], [523, 0.6], [494, 0.6],
+    [440, 1], [698, 0.3], [698, 0.3],
+    [659, 0.6], [523, 0.6], [587, 0.6], [523, 1]
+];
 
+async function startBirthdayMusic() {
+    try {
+        const AudioContextClass =
+            window.AudioContext || window.webkitAudioContext;
 
-// BLOW THE CANDLES
-blowButton.addEventListener("click", () => {
-    const flames = document.querySelectorAll(".flame");
+        if (!AudioContextClass) {
+            const musicStatus = $("musicStatus");
+            if (musicStatus) {
+                musicStatus.textContent =
+                    "Your browser does not support the birthday melody.";
+            }
+            return;
+        }
 
-    flames.forEach((flame) => {
-        flame.style.display = "none";
+        if (!audioContext) {
+            audioContext = new AudioContextClass();
+        }
+
+        await audioContext.resume();
+
+        const musicStatus = $("musicStatus");
+        if (musicStatus) {
+            musicStatus.textContent = "♫ Happy Birthday, Lovelove Ko ♥";
+        }
+
+        let time = audioContext.currentTime + 0.1;
+
+        melody.forEach(([frequency, duration]) => {
+            const oscillator = audioContext.createOscillator();
+            const volume = audioContext.createGain();
+
+            oscillator.type = "triangle";
+            oscillator.frequency.value = frequency;
+
+            volume.gain.setValueAtTime(0.0001, time);
+            volume.gain.exponentialRampToValueAtTime(
+                0.12,
+                time + 0.03
+            );
+            volume.gain.setValueAtTime(
+                0.12,
+                time + Math.max(0.04, duration - 0.05)
+            );
+            volume.gain.exponentialRampToValueAtTime(
+                0.0001,
+                time + duration
+            );
+
+            oscillator.connect(volume);
+            volume.connect(audioContext.destination);
+
+            oscillator.start(time);
+            oscillator.stop(time + duration);
+
+            time += duration + 0.08;
+        });
+    } catch (error) {
+        console.log("Birthday music could not start:", error);
+    }
+}
+
+// 💖 Open the surprise
+const startButton = $("startButton");
+
+if (startButton) {
+    startButton.addEventListener("click", () => {
+        showSection("cakeSection");
+        startBirthdayMusic();
     });
+}
 
-    subtitle.textContent = "Yay! It's your special day! 💗";
+// 🕯️ Blow out the candles
+const blowButton = $("blowButton");
 
-    message.textContent =
-        "You did it! Now close your eyes and make your most special wish. ✨";
+if (blowButton) {
+    blowButton.addEventListener("click", () => {
+        document.querySelectorAll(".flame").forEach((flame) => {
+            flame.style.display = "none";
+        });
 
-    blowButton.classList.add("hidden");
-    wishButton.classList.remove("hidden");
+        $("cakeMessage").textContent =
+            "The candles are out! Close your eyes and make a wish. ❤️";
 
-    launchConfetti(45);
-});
+        blowButton.classList.add("hidden");
+        $("wishButton").classList.remove("hidden");
 
+        createShimmers(35);
+    });
+}
 
-// MAKE A WISH
-wishButton.addEventListener("click", () => {
-    subtitle.textContent = "Your wish is on its way! 💖";
+// ✨ Go to birthday wish
+const wishButton = $("wishButton");
 
-    message.textContent =
-        "May your wishes come true, your heart stay happy, and your year be full of love! Happy Birthday! 🎂💗";
+if (wishButton) {
+    wishButton.addEventListener("click", () => {
+        showSection("wishSection");
+    });
+}
 
-    wishButton.textContent = "Wish sent! 💌";
-    wishButton.disabled = true;
+// 📩 Send birthday wish to your email
+// Replace YOUR_EMAIL with your actual email address.
+const RECEIVER_EMAIL = "YOUR_EMAIL";
 
-    launchConfetti(100);
-    launchBalloons(18);
-});
+const wishForm = $("wishForm");
+
+if (wishForm) {
+    wishForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const wish = $("wishText").value.trim();
+        const status = $("wishStatus");
+        const submitButton = $("sendWishButton");
+
+        if (!wish) {
+            status.textContent = "Write your wish first, love. ❤️";
+            return;
+        }
+
+        if (RECEIVER_EMAIL === "YOUR_EMAIL") {
+            status.textContent =
+                "Email setup is not finished yet. Please set your email in script.js.";
+            return;
+        }
+
+        status.textContent = "Sending your wish... ❤️";
+
+        if (submitButton) {
+            submitButton.disabled = true;
+        }
+
+        try {
+            const response = await fetch(
+                "https://formsubmit.co/ajax/" +
+                encodeURIComponent(RECEIVER_EMAIL),
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify({
+                        subject: "Birthday Wish 🎂",
+                        message: wish,
+                        _captcha: "false"
+                    })
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("Email could not be sent.");
+            }
+
+            status.textContent =
+                "Your wish has been sent! One last surprise awaits... ❤️";
+
+            setTimeout(() => {
+                showSection("photosSection");
+                createShimmers(35);
+            }, 1800);
+
+        } catch (error) {
+            status.textContent =
+                "Sorry, the wish could not be sent. Check your internet and try again.";
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+            }
+        }
+    });
+                        }
