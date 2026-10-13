@@ -1,6 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
+/* =========================
+   COLORS & RESET
+========================= */
+
 :root {
     --wine: #650018;
     --red: #a00032;
@@ -45,7 +49,9 @@ button {
     display: none !important;
 }
 
-/* Background glow */
+/* =========================
+   BACKGROUND GLOW & SPARKLES
+========================= */
 
 .glow {
     position: fixed;
@@ -102,7 +108,9 @@ button {
     }
 }
 
-/* Main layout */
+/* =========================
+   MAIN LAYOUT
+========================= */
 
 .site {
     position: relative;
@@ -144,13 +152,9 @@ button {
     }
 }
 
-.eyebrow {
-    color: var(--pink);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    margin: 0 0 18px;
-}
+/* =========================
+   TEXT
+========================= */
 
 h1,
 h2,
@@ -176,6 +180,14 @@ h2 {
 
 h3 {
     font-size: 1.5rem;
+}
+
+.eyebrow {
+    color: var(--pink);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin: 0 0 18px;
 }
 
 .intro,
@@ -211,7 +223,9 @@ h3 {
     }
 }
 
-/* Buttons */
+/* =========================
+   BUTTONS
+========================= */
 
 .primary-button,
 .secondary-button {
@@ -222,7 +236,10 @@ h3 {
     border-radius: 999px;
     font-weight: 700;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
 }
 
 .primary-button {
@@ -247,61 +264,96 @@ h3 {
     transform: scale(0.98);
 }
 
+/* =========================
+   CAKE & NUMBER CANDLES
+========================= */
 
-/* Number candles: 2 and 3 */
+.cake-scene {
+    position: relative;
+    height: 255px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 15px;
+    margin: 65px auto 20px;
+    overflow: visible;
+}
+
+.cake-glow {
+    position: absolute;
+    width: 220px;
+    height: 150px;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 40, 100, 0.18);
+    filter: blur(40px);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Holds the two number-shaped digits */
+
 .candle-area {
     position: absolute;
     z-index: 5;
-    top: 8px;
+    top: -65px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100%;
+    width: 190px;
+    height: 130px;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    gap: 12px;
-    padding: 0;
+    gap: 2px;
 }
 
 .number-candle {
     position: relative;
-    width: 94px;
-    height: 130px;
-    flex: 0 0 94px;
+    width: 88px;
+    height: 125px;
+    flex: 0 0 88px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 }
+
+/* Gold digits 2 and 3 */
 
 .candle-digit {
-    font-family: Georgia, serif;
-    font-size: 116px;
+    display: block;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 112px;
     font-weight: 900;
-    line-height: 1;
-    color: #f7ca53;
+    line-height: 0.95;
     background: linear-gradient(
-        135deg,
-        #fff0a0 0%,
-        #e7b52e 28%,
-        #fff0a0 48%,
-        #b77912 70%,
-        #ffdf73 88%,
+        115deg,
+        #fff6bd 0%,
+        #dca12b 18%,
+        #fff1a0 35%,
+        #b77912 53%,
+        #ffdf73 70%,
+        #fff2b0 82%,
         #b77912 100%
     );
-    -webkit-background-clip: text;
     background-clip: text;
+    -webkit-background-clip: text;
+    color: #f7ca53;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(2px 3px 1px #75420d);
+    -webkit-text-stroke: 1px #d49a25;
+    filter: drop-shadow(2px 4px 2px rgba(45, 10, 0, 0.55));
 }
 
-/* Candle flames */
+/* Individual flame above each digit */
+
 .number-candle .flame {
     position: absolute;
-    z-index: 2;
-    top: -3px;
+    z-index: 6;
+    top: 0;
     left: 50%;
-    width: 20px;
-    height: 29px;
+    width: 19px;
+    height: 27px;
     transform: translateX(-50%);
     border-radius: 50% 50% 45% 45%;
     background: radial-gradient(
@@ -314,17 +366,8 @@ h3 {
     box-shadow:
         0 0 12px #ffb52e,
         0 0 25px rgba(255, 130, 30, 0.7);
-    animation: candleFlicker 0.7s infinite alternate;
-}
-
-.flame-inner {
-    position: absolute;
-    left: 6px;
-    bottom: 4px;
-    width: 8px;
-    height: 15px;
-    border-radius: 50%;
-    background: #fffde8;
+    transform-origin: center bottom;
+    animation: candleFlicker 0.7s ease-in-out infinite alternate;
 }
 
 @keyframes candleFlicker {
@@ -337,51 +380,21 @@ h3 {
     }
 }
 
-/* Keep candles above the cake */
-.cake-scene {
-    position: relative;
-    overflow: visible;
-}
-
-@media (max-width: 600px) {
-    .candle-area {
-        gap: 2px;
-        top: 12px;
-    }
-
-    .number-candle {
-        width: 76px;
-        height: 105px;
-        flex-basis: 76px;
-    }
-
-    .candle-digit {
-        font-size: 94px;
-    }
-
-    .number-candle .flame {
-        width: 16px;
-        height: 24px;
-    }
-}
-
-@keyframes flicker {
-    from {
-        transform: translateX(-50%) scale(0.9) rotate(-4deg);
-    }
-
-    to {
-        transform: translateX(-50%) scale(1.1) rotate(4deg);
-    }
-}
+/* Cake layers */
 
 .icing {
     position: relative;
     z-index: 2;
     width: 82%;
     height: 25px;
+    flex: 0 0 25px;
     border-radius: 12px 12px 7px 7px;
-    background: linear-gradient(90deg, #ffb9cc, #fff0f3, #ff8dab);
+    background: linear-gradient(
+        90deg,
+        #ffb9cc,
+        #fff0f3,
+        #ff8dab
+    );
     box-shadow: 0 0 20px rgba(255, 150, 180, 0.15);
 }
 
@@ -390,7 +403,13 @@ h3 {
     z-index: 2;
     width: 78%;
     height: 95px;
-    background: linear-gradient(100deg, #a60035, #e52b5e, #a60035);
+    flex: 0 0 95px;
+    background: linear-gradient(
+        100deg,
+        #a60035,
+        #e52b5e,
+        #a60035
+    );
     border-radius: 0 0 15px 15px;
     border: 1px solid rgba(255, 190, 210, 0.35);
     display: flex;
@@ -405,33 +424,41 @@ h3 {
     font-size: 0.9rem;
 }
 
-.cake-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #fff0f3;
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
-}
-
 .cake-base {
+    position: relative;
     z-index: 2;
     width: 83%;
     height: 13px;
-    background: linear-gradient(90deg, #ff8ca8, #ffe2ea, #ff8ca8);
+    flex: 0 0 13px;
+    background: linear-gradient(
+        90deg,
+        #ff8ca8,
+        #ffe2ea,
+        #ff8ca8
+    );
     border-radius: 0 0 12px 12px;
 }
 
 .cake-plate {
+    position: relative;
     z-index: 1;
     width: 95%;
     height: 15px;
+    flex: 0 0 15px;
     margin-top: -1px;
     border-radius: 50%;
-    background: linear-gradient(90deg, #8d1740, #ffc1d1, #8d1740);
+    background: linear-gradient(
+        90deg,
+        #8d1740,
+        #ffc1d1,
+        #8d1740
+    );
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
 }
 
-/* Birthday wish form */
+/* =========================
+   BIRTHDAY WISH FORM
+========================= */
 
 #wishForm {
     max-width: 600px;
@@ -448,6 +475,7 @@ h3 {
 }
 
 #wishText {
+    display: block;
     width: 100%;
     min-height: 140px;
     resize: vertical;
@@ -480,7 +508,9 @@ h3 {
     line-height: 1.6;
 }
 
-/* Final photo and message */
+/* =========================
+   FINAL PHOTO & MESSAGE
+========================= */
 
 .final-memory {
     display: grid;
@@ -496,8 +526,8 @@ h3 {
 }
 
 .first-photo img {
-    width: 100%;
     display: block;
+    width: 100%;
     aspect-ratio: 3 / 4;
     object-fit: cover;
     border-radius: 18px;
@@ -514,8 +544,8 @@ h3 {
 
 .final-letter {
     min-width: 0;
-    line-height: 1.8;
     color: #ffe4eb;
+    line-height: 1.8;
     overflow-wrap: anywhere;
 }
 
@@ -529,10 +559,10 @@ h3 {
 }
 
 .signature {
+    margin-top: 24px;
     color: #ffb5c9;
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    margin-top: 24px;
 }
 
 .ending {
@@ -542,7 +572,9 @@ h3 {
     font-size: 1.15rem;
 }
 
-/* Footer */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
     text-align: center;
@@ -552,7 +584,9 @@ footer {
     letter-spacing: 0.5px;
 }
 
-/* Mobile layout */
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
 
 @media (max-width: 600px) {
     .site {
@@ -564,6 +598,33 @@ footer {
     .panel {
         padding: 25px 18px;
         border-radius: 22px;
+    }
+
+    .cake-scene {
+        height: 245px;
+        margin-top: 60px;
+    }
+
+    .candle-area {
+        width: 150px;
+        height: 105px;
+        top: -52px;
+        gap: 0;
+    }
+
+    .number-candle {
+        width: 72px;
+        height: 102px;
+        flex-basis: 72px;
+    }
+
+    .candle-digit {
+        font-size: 91px;
+    }
+
+    .number-candle .flame {
+        width: 16px;
+        height: 23px;
     }
 
     .final-memory {
@@ -587,22 +648,8 @@ footer {
         font-size: 0.94rem;
     }
 
-    .cake-scene {
-        height: 255px;
-    }
-
-    .candle-area {
-        gap: 3px;
-    }
-
-    .candle {
-        width: 6px;
-        flex-basis: 6px;
-    }
-
     .primary-button,
     .secondary-button {
-        max-width: 100%;
         padding: 13px 18px;
     }
-    }
+}
